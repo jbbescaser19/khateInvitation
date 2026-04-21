@@ -1642,7 +1642,8 @@ section {
   opacity: 0.55;
   line-height: 1.6;
 }
-/* ===================== COTILLION DE HONOR SECTION ===================== */
+/* ===================== COTILLION DE HONOR ===================== */
+/* ===================== COTILLION DE HONOR ===================== */
 .cotillion-section {
   background: linear-gradient(
     180deg,
@@ -1675,7 +1676,7 @@ section {
   pointer-events: none;
 }
 
-/* ---- BLOCK WRAPPER ---- */
+/* ---- BLOCK HEADER ---- */
 .cotillion-block {
   margin-top: 60px;
   position: relative;
@@ -1699,7 +1700,6 @@ section {
 }
 
 .cotillion-block-header::after {
-  content: "— ✦ —";
   margin-top: 14px;
   margin-bottom: 0;
 }
@@ -1744,46 +1744,37 @@ section {
   margin: 6px 0 0;
 }
 
-/* ---- COURT PAIRS ---- */
-.cotillion-pairs-grid {
+/* ===================== COURT PAIRS ===================== */
+.court-pairs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-  .cotillion-pairs-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.cotillion-pair {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+.court-pair-card {
   background: linear-gradient(
     135deg,
     rgba(107, 26, 42, 0.35),
     rgba(74, 15, 28, 0.5)
   );
   border: 1px solid rgba(201, 168, 76, 0.18);
-  padding: 18px 22px;
-  border-radius: 3px;
+  border-radius: 12px;
+  padding: 28px 20px 24px;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s ease;
-  flex-wrap: wrap;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   text-align: center;
 }
 
-.cotillion-pair::before {
+.court-pair-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1.5px;
+  height: 2px;
   background: linear-gradient(
     to right,
     transparent,
@@ -1792,18 +1783,21 @@ section {
   );
 }
 
-.cotillion-pair:hover {
-  border-color: rgba(201, 168, 76, 0.35);
+.court-pair-card:hover {
+  border-color: rgba(201, 168, 76, 0.4);
   background: linear-gradient(
     135deg,
     rgba(107, 26, 42, 0.5),
     rgba(74, 15, 28, 0.65)
   );
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(201, 168, 76, 0.08);
 }
 
-.cotillion-pair--debutant {
+/* Principal Pair */
+.principal-pair {
   border-color: rgba(201, 168, 76, 0.45);
   background: linear-gradient(
     135deg,
@@ -1811,108 +1805,261 @@ section {
     rgba(74, 15, 28, 0.65)
   );
   grid-column: 1 / -1;
-  max-width: 440px;
+  max-width: 400px;
   margin: 0 auto;
   width: 100%;
+  border-width: 2px;
 }
 
-.cotillion-pair--debutant::after {
-  content: "★ Principal Pair ★";
+.principal-badge {
   position: absolute;
-  top: -1px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   font-family: "Cinzel", serif;
-  font-size: 0.42rem;
+  font-size: 0.5rem;
   letter-spacing: 3px;
   color: var(--gold);
-  background: var(--burgundy-dark);
-  padding: 2px 8px;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
-  border-left: 1px solid rgba(201, 168, 76, 0.3);
-  border-right: 1px solid rgba(201, 168, 76, 0.3);
+  background: rgba(74, 15, 28, 0.8);
+  padding: 4px 10px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
   text-transform: uppercase;
+  border-radius: 3px;
+}
+
+/* Pair Photos Layout */
+.pair-photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* ---- COURT PHOTO (IMG) ---- */
+.court-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border: 3px solid rgba(201, 168, 76, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.15),
+    rgba(74, 15, 28, 0.4)
+  );
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(201, 168, 76, 0.05);
+  flex-shrink: 0;
+}
+
+.court-photo::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.court-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.court-pair-card:hover .court-photo img {
+  transform: scale(1.12);
+}
+
+.court-pair-card:hover .court-photo {
+  border-color: rgba(201, 168, 76, 0.6);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(201, 168, 76, 0.15),
+    inset 0 0 20px rgba(201, 168, 76, 0.08);
+}
+
+/* ---- COURT PHOTO (EMOJI) ---- */
+.court-photo.emoji-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.2),
+    rgba(74, 15, 28, 0.5)
+  );
+}
+
+.court-photo.emoji-photo span {
+  font-size: 2.8rem;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+
+.court-pair-card:hover .court-photo.emoji-photo span {
+  transform: scale(1.15);
+}
+
+/* Principal larger */
+.court-photo.principal {
+  width: 120px;
+  height: 120px;
+  border-color: rgba(201, 168, 76, 0.5);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(201, 168, 76, 0.1);
+}
+
+.court-photo.principal::before {
+  inset: 4px;
+  border-width: 1.5px;
+  border-color: rgba(201, 168, 76, 0.4);
+}
+
+.court-photo.principal.emoji-photo span {
+  font-size: 3.2rem;
+}
+
+/* Connector Ring */
+.pair-connector-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 168, 76, 0.4);
+  background: rgba(74, 15, 28, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 -12px;
+  z-index: 3;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pair-connector-ring::before {
+  content: "✦";
+  color: var(--gold);
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.pair-connector-ring.principal-ring {
+  width: 40px;
+  height: 40px;
+  border-color: rgba(201, 168, 76, 0.6);
+}
+
+.pair-connector-ring.principal-ring::before {
+  font-size: 0.85rem;
+}
+
+/* Pair Names */
+.pair-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 
 .pair-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
   color: var(--cream);
-  opacity: 0.9;
-  line-height: 1.3;
   font-weight: 600;
+  line-height: 1.3;
+  opacity: 0.9;
 }
 
 .pair-name.debutant-highlight {
   color: var(--gold-pale);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
   text-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
 }
 
 .pair-amp {
   font-family: "Cinzel Decorative", serif;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   color: var(--gold);
   opacity: 0.7;
-  flex-shrink: 0;
 }
 
-/* ---- NAME CARDS GRID ---- */
-.cotillion-names-grid {
+/* ===================== PARTICIPANTS GRID ===================== */
+.participants-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-@media (max-width: 500px) {
-  .cotillion-names-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
+.participants-grid.shots-grid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 }
 
-.cotillion-names-grid--shots {
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-}
-
-.cotillion-name-card {
+.participant-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 13px 16px;
+  text-align: center;
+  padding: 20px 14px 16px;
   background: linear-gradient(
     135deg,
     rgba(107, 26, 42, 0.25),
     rgba(74, 15, 28, 0.4)
   );
   border: 1px solid rgba(201, 168, 76, 0.12);
-  border-left: 2px solid rgba(201, 168, 76, 0.35);
-  transition: all 0.3s ease;
+  border-left: 3px solid rgba(201, 168, 76, 0.35);
+  border-radius: 8px;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
 }
 
-.cotillion-name-card::after {
+.participant-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
-  height: 100%;
-  background: rgba(201, 168, 76, 0.04);
-  transition: width 0.35s ease;
-}
-
-.cotillion-name-card:hover {
-  border-left-color: rgba(201, 168, 76, 0.7);
-  border-color: rgba(201, 168, 76, 0.25);
-  transform: translateX(3px);
-}
-
-.cotillion-name-card:hover::after {
   width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 168, 76, 0.2),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.cotillion-name-card--final {
+.participant-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  border-left-color: rgba(201, 168, 76, 0.7);
+  background: linear-gradient(
+    135deg,
+    rgba(107, 26, 42, 0.4),
+    rgba(74, 15, 28, 0.55)
+  );
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.participant-card:hover::before {
+  opacity: 1;
+}
+
+.participant-card.highlight-card {
   border-left-color: var(--gold);
   background: linear-gradient(
     135deg,
@@ -1920,66 +2067,425 @@ section {
     rgba(74, 15, 28, 0.5)
   );
   grid-column: 1 / -1;
+  max-width: 320px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.cotillion-name-card--final .name-number {
-  background: rgba(201, 168, 76, 0.25);
-  color: var(--gold-light);
-  border-color: rgba(201, 168, 76, 0.5);
+/* ===================== MULTI-PHOTO CARDS (FIXED DESIGN) ===================== */
+.participant-card.multi-photo-card {
+  padding-top: 24px;
 }
 
-.name-number {
+.participant-photos-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+/* 2 images layout */
+.participant-photos-row.count-2 {
+  gap: 10px;
+}
+
+/* 4 images layout */
+.participant-photos-row.count-4 {
+  gap: 6px;
+  flex-wrap: wrap;
+  max-width: 160px;
+}
+
+/* ---- PARTICIPANT PHOTO (IMG) ---- */
+.participant-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 2.5px solid rgba(201, 168, 76, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.1),
+    rgba(74, 15, 28, 0.3)
+  );
+  margin-bottom: 12px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.participant-photo::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.participant-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.participant-card:hover .participant-photo {
+  border-color: rgba(201, 168, 76, 0.55);
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(201, 168, 76, 0.12);
+}
+
+.participant-card:hover .participant-photo img {
+  transform: scale(1.15);
+}
+
+/* Small photo for 2-image cards */
+.participant-photo.small {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0;
+}
+
+/* Tiny photo for 4-image cards */
+.participant-photo.tiny {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0;
+}
+
+/* Multi-photo hover effects */
+.participant-card.multi-photo-card:hover .participant-photo {
+  transform: scale(1.05);
+}
+
+.participant-card.multi-photo-card:hover .participant-photo.small {
+  transform: scale(1.08);
+}
+
+.participant-card.multi-photo-card:hover .participant-photo.tiny {
+  transform: scale(1.1);
+}
+
+/* ---- PARTICIPANT PHOTO (EMOJI) ---- */
+.participant-photo.emoji-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.18),
+    rgba(74, 15, 28, 0.45)
+  );
+}
+
+.participant-photo.emoji-photo span {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+  line-height: 1;
+}
+
+.participant-card:hover .participant-photo.emoji-photo span {
+  transform: scale(1.2);
+}
+
+.participant-photo.emoji-photo.small span {
+  font-size: 1.8rem;
+}
+
+.participant-photo.emoji-photo.tiny span {
+  font-size: 1.4rem;
+}
+
+.participant-card.highlight-card .participant-photo {
+  border-color: rgba(201, 168, 76, 0.45);
+  border-width: 3px;
+}
+
+/* Connector for multi-photo cards */
+.participant-photos-row.count-2::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold);
+  font-size: 0.6rem;
+  opacity: 0.7;
+  background: rgba(74, 15, 28, 0.8);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+/* Participant Number */
+.participant-num {
   font-family: "Cinzel", serif;
   font-size: 0.6rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.6;
+  margin-bottom: 6px;
   background: rgba(201, 168, 76, 0.1);
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  line-height: 1;
 }
 
-.name-text {
+.participant-card.highlight-card .participant-num {
+  background: rgba(201, 168, 76, 0.2);
+  color: var(--gold-light);
+  border-color: rgba(201, 168, 76, 0.4);
+}
+
+/* Participant Name */
+.participant-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-size: clamp(0.82rem, 1.8vw, 0.95rem);
   color: var(--cream);
   opacity: 0.85;
-  line-height: 1.35;
-  font-weight: 400;
+  line-height: 1.4;
+  font-weight: 500;
 }
 
-/* ---- RESPONSIVE TWEAKS ---- */
-@media (max-width: 500px) {
-  .cotillion-name-card {
-    padding: 10px 12px;
-    gap: 8px;
+/* Wide card for 4 images */
+.participant-card.wide-card {
+  grid-column: span 1;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .court-pairs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
-  .name-number {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    font-size: 0.52rem;
+
+  .court-photo {
+    width: 85px;
+    height: 85px;
+    border-width: 2.5px;
   }
-  .name-text {
-    font-size: 0.82rem;
+
+  .court-photo.principal {
+    width: 100px;
+    height: 100px;
   }
-  .cotillion-pair {
-    padding: 14px 16px;
+
+  .court-photo.emoji-photo span {
+    font-size: 2.4rem;
   }
-  .cotillion-block-header::before,
-  .cotillion-block-header::after {
-    font-size: 0.65rem;
-    letter-spacing: 4px;
+
+  .court-photo.principal.emoji-photo span {
+    font-size: 2.8rem;
+  }
+
+  .pair-connector-ring {
+    width: 32px;
+    height: 32px;
+    margin: 0 -10px;
+  }
+
+  .participants-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .participants-grid.shots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .participant-photo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .participant-photo.small {
+    width: 56px;
+    height: 56px;
+  }
+
+  .participant-photo.tiny {
+    width: 48px;
+    height: 48px;
+  }
+
+  .participant-photo.emoji-photo span {
+    font-size: 1.8rem;
+  }
+
+  .participant-photo.emoji-photo.small span {
+    font-size: 1.6rem;
+  }
+
+  .participant-photo.emoji-photo.tiny span {
+    font-size: 1.3rem;
+  }
+
+  .participant-card {
+    padding: 16px 10px 12px;
+  }
+
+  .participant-card.multi-photo-card {
+    padding-top: 20px;
+  }
+
+  .participant-photos-row.count-4 {
+    max-width: 120px;
+    gap: 5px;
+  }
+
+  .principal-pair {
+    grid-column: 1 / -1;
+    max-width: 340px;
   }
 }
+
+@media (max-width: 480px) {
+  .court-pairs-grid {
+    grid-template-columns: 1fr;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .court-photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .court-photo.principal {
+    width: 105px;
+    height: 105px;
+  }
+
+  .court-photo.emoji-photo span {
+    font-size: 2.6rem;
+  }
+
+  .pair-connector-ring {
+    width: 30px;
+    height: 30px;
+    margin: 0 -8px;
+  }
+
+  .participants-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .participant-photo {
+    width: 56px;
+    height: 56px;
+    border-width: 2px;
+  }
+
+  .participant-photo.small {
+    width: 50px;
+    height: 50px;
+  }
+
+  .participant-photo.tiny {
+    width: 42px;
+    height: 42px;
+  }
+
+  .participant-photo.emoji-photo span {
+    font-size: 1.6rem;
+  }
+
+  .participant-photo.emoji-photo.small span {
+    font-size: 1.4rem;
+  }
+
+  .participant-photo.emoji-photo.tiny span {
+    font-size: 1.1rem;
+  }
+
+  .participant-name {
+    font-size: 0.78rem;
+  }
+
+  .participant-num {
+    width: 22px;
+    height: 22px;
+    font-size: 0.52rem;
+  }
+
+  .cotillion-block {
+    margin-top: 40px;
+  }
+
+  .participant-photos-row.count-4 {
+    max-width: 110px;
+    gap: 4px;
+  }
+
+  .participant-photos-row.count-2::after {
+    width: 18px;
+    height: 18px;
+    font-size: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .participants-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .participants-grid.shots-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .court-pairs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .principal-pair {
+    grid-column: 2 / 3;
+  }
+
+  .court-photo {
+    width: 105px;
+    height: 105px;
+  }
+
+  .court-photo.principal {
+    width: 125px;
+    height: 125px;
+  }
+
+  .participant-photo.small {
+    width: 68px;
+    height: 68px;
+  }
+
+  .participant-photo.tiny {
+    width: 56px;
+    height: 56px;
+  }
+
+  .participant-photos-row.count-4 {
+    max-width: 180px;
+  }
+}
+
 /* ---- LOCATION ---- */
 .location-section {
   background: linear-gradient(180deg, var(--burgundy-dark), #3d0e1a);
