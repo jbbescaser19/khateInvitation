@@ -1642,6 +1642,344 @@ section {
   opacity: 0.55;
   line-height: 1.6;
 }
+/* ===================== COTILLION DE HONOR SECTION ===================== */
+.cotillion-section {
+  background: linear-gradient(
+    180deg,
+    var(--burgundy-dark) 0%,
+    #2e0810 40%,
+    #3d0e1a 70%,
+    var(--burgundy-dark) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.cotillion-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    radial-gradient(
+      ellipse 1.5px 1.5px at 30px 30px,
+      var(--gold) 100%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 1px 1px at 15px 15px,
+      var(--gold) 100%,
+      transparent 100%
+    );
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ---- BLOCK WRAPPER ---- */
+.cotillion-block {
+  margin-top: 60px;
+  position: relative;
+}
+
+.cotillion-block-header {
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.cotillion-block-header::before,
+.cotillion-block-header::after {
+  content: "— ✦ —";
+  font-size: 0.75rem;
+  color: var(--gold);
+  opacity: 0.35;
+  letter-spacing: 6px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.cotillion-block-header::after {
+  content: "— ✦ —";
+  margin-top: 14px;
+  margin-bottom: 0;
+}
+
+.cotillion-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 168, 76, 0.45);
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.12),
+    rgba(74, 15, 28, 0.3)
+  );
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin: 0 auto 14px;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+  animation: sealPulse 3s ease-in-out infinite;
+}
+
+.cotillion-block-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
+  margin: 0;
+}
+
+.cotillion-block-sub {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-style: italic;
+  color: var(--gold-pale);
+  opacity: 0.6;
+  letter-spacing: 2px;
+  margin: 6px 0 0;
+}
+
+/* ---- COURT PAIRS ---- */
+.cotillion-pairs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .cotillion-pairs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cotillion-pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(107, 26, 42, 0.35),
+    rgba(74, 15, 28, 0.5)
+  );
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  padding: 18px 22px;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.cotillion-pair::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 168, 76, 0.4),
+    transparent
+  );
+}
+
+.cotillion-pair:hover {
+  border-color: rgba(201, 168, 76, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(107, 26, 42, 0.5),
+    rgba(74, 15, 28, 0.65)
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.cotillion-pair--debutant {
+  border-color: rgba(201, 168, 76, 0.45);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 32, 53, 0.45),
+    rgba(74, 15, 28, 0.65)
+  );
+  grid-column: 1 / -1;
+  max-width: 440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cotillion-pair--debutant::after {
+  content: "★ Principal Pair ★";
+  position: absolute;
+  top: -1px;
+  right: 16px;
+  font-family: "Cinzel", serif;
+  font-size: 0.42rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  background: var(--burgundy-dark);
+  padding: 2px 8px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+  border-left: 1px solid rgba(201, 168, 76, 0.3);
+  border-right: 1px solid rgba(201, 168, 76, 0.3);
+  text-transform: uppercase;
+}
+
+.pair-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  color: var(--cream);
+  opacity: 0.9;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.pair-name.debutant-highlight {
+  color: var(--gold-pale);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+}
+
+.pair-amp {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 0.75rem;
+  color: var(--gold);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* ---- NAME CARDS GRID ---- */
+.cotillion-names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 500px) {
+  .cotillion-names-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+}
+
+.cotillion-names-grid--shots {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.cotillion-name-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(107, 26, 42, 0.25),
+    rgba(74, 15, 28, 0.4)
+  );
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  border-left: 2px solid rgba(201, 168, 76, 0.35);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cotillion-name-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(201, 168, 76, 0.04);
+  transition: width 0.35s ease;
+}
+
+.cotillion-name-card:hover {
+  border-left-color: rgba(201, 168, 76, 0.7);
+  border-color: rgba(201, 168, 76, 0.25);
+  transform: translateX(3px);
+}
+
+.cotillion-name-card:hover::after {
+  width: 100%;
+}
+
+.cotillion-name-card--final {
+  border-left-color: var(--gold);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 32, 53, 0.3),
+    rgba(74, 15, 28, 0.5)
+  );
+  grid-column: 1 / -1;
+}
+
+.cotillion-name-card--final .name-number {
+  background: rgba(201, 168, 76, 0.25);
+  color: var(--gold-light);
+  border-color: rgba(201, 168, 76, 0.5);
+}
+
+.name-number {
+  font-family: "Cinzel", serif;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  color: var(--gold);
+  opacity: 0.7;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.name-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: var(--cream);
+  opacity: 0.85;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+/* ---- RESPONSIVE TWEAKS ---- */
+@media (max-width: 500px) {
+  .cotillion-name-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .name-number {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    font-size: 0.52rem;
+  }
+  .name-text {
+    font-size: 0.82rem;
+  }
+  .cotillion-pair {
+    padding: 14px 16px;
+  }
+  .cotillion-block-header::before,
+  .cotillion-block-header::after {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+  }
+}
 /* ---- LOCATION ---- */
 .location-section {
   background: linear-gradient(180deg, var(--burgundy-dark), #3d0e1a);
