@@ -184,3 +184,87 @@ const observer = new IntersectionObserver(
 document
   .querySelectorAll(".fade-in:not(.hero .fade-in)")
   .forEach((el) => observer.observe(el));
+
+/* ===== LIGHTBOX GALLERY ===== */
+const galleryImages = [
+  "pictures/khate2.jpg",
+  "pictures/khate3.jpg",
+  "pictures/khate4.jpg",
+  "pictures/khate5.jpg",
+  "pictures/khate6.jpg",
+  "pictures/khate7.jpg",
+  "pictures/khate8.jpg",
+  "pictures/khate9.jpg",
+];
+
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+  const counter = document.getElementById("lightbox-counter");
+
+  img.src = galleryImages[currentLightboxIndex];
+  counter.textContent = currentLightboxIndex + 1 + " / " + galleryImages.length;
+  lightbox.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(e) {
+  if (
+    e.target.classList.contains("lightbox") ||
+    e.target.classList.contains("lightbox-close")
+  ) {
+    document.getElementById("lightbox").classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+
+function changeImage(e, dir) {
+  e.stopPropagation();
+  currentLightboxIndex =
+    (currentLightboxIndex + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById("lightbox-img").src =
+    galleryImages[currentLightboxIndex];
+  document.getElementById("lightbox-counter").textContent =
+    currentLightboxIndex + 1 + " / " + galleryImages.length;
+}
+
+// Keyboard navigation
+document.addEventListener("keydown", (e) => {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox.classList.contains("active")) return;
+
+  if (e.key === "Escape") {
+    lightbox.classList.remove("active");
+    document.body.style.overflow = "";
+  } else if (e.key === "ArrowLeft") {
+    changeImage({ stopPropagation: () => {} }, -1);
+  } else if (e.key === "ArrowRight") {
+    changeImage({ stopPropagation: () => {} }, 1);
+  }
+});
+
+// Touch swipe support for lightbox
+let touchStartX = 0;
+const lightboxEl = document.getElementById("lightbox");
+lightboxEl.addEventListener(
+  "touchstart",
+  (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  },
+  { passive: true },
+);
+
+lightboxEl.addEventListener(
+  "touchend",
+  (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      changeImage({ stopPropagation: () => {} }, diff > 0 ? 1 : -1);
+    }
+  },
+  { passive: true },
+);

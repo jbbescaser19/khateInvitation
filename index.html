@@ -334,57 +334,142 @@
           <h2 class="section-title fade-in">Photo Gallery</h2>
           <div class="gold-divider fade-in"><span></span></div>
           <div class="gallery-grid fade-in">
-            <div class="gallery-item" style="--angle: 135deg">
+            <div
+              class="gallery-item"
+              style="--angle: 135deg"
+              onclick="openLightbox(0)"
+            >
               <div class="gallery-placeholder">🌸</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate2.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">A Moment of Grace</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 160deg">
+            <div
+              class="gallery-item"
+              style="--angle: 160deg"
+              onclick="openLightbox(1)"
+            >
               <div class="gallery-placeholder">✨</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate3.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Golden Hour</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 120deg">
+            <div
+              class="gallery-item"
+              style="--angle: 120deg"
+              onclick="openLightbox(2)"
+            >
               <div class="gallery-placeholder">🌹</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate4.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Elegant Bloom</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 145deg">
+            <div
+              class="gallery-item"
+              style="--angle: 145deg"
+              onclick="openLightbox(3)"
+            >
               <div class="gallery-placeholder">💫</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate5.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Radiant Smile</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 110deg">
+            <div
+              class="gallery-item"
+              style="--angle: 110deg"
+              onclick="openLightbox(4)"
+            >
               <div class="gallery-placeholder">🌟</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate6.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Pure Joy</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 155deg">
+            <div
+              class="gallery-item"
+              style="--angle: 155deg"
+              onclick="openLightbox(5)"
+            >
               <div class="gallery-placeholder">🎀</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate7.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Timeless Beauty</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 155deg">
+            <div
+              class="gallery-item"
+              style="--angle: 155deg"
+              onclick="openLightbox(6)"
+            >
               <div class="gallery-placeholder">🎈</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate8.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Cherished Memory</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
-            <div class="gallery-item" style="--angle: 155deg">
+            <div
+              class="gallery-item"
+              style="--angle: 155deg"
+              onclick="openLightbox(7)"
+            >
               <div class="gallery-placeholder">🎁</div>
               <div class="gallery-overlay">
                 <img src="pictures/khate9.jpg" alt="" />
+                <div class="gallery-icon">✦</div>
+                <div class="gallery-caption-wrap">
+                  <p class="gallery-caption">Dreamy Glow</p>
+                  <p class="gallery-subcaption">Tap to Enlarge</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- ===== LIGHTBOX ===== -->
+      <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+        <button class="lightbox-nav prev" onclick="changeImage(event, -1)">
+          ‹
+        </button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+        <button class="lightbox-nav next" onclick="changeImage(event, 1)">
+          ›
+        </button>
+        <p class="lightbox-counter" id="lightbox-counter">1 / 8</p>
+      </div>
 
       <!-- ===== PROGRAM ===== -->
       <!-- ===== PROGRAM ===== -->
