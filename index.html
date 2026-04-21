@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta property="og:title" content="Sophia Khate — Her Debut" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:image" content="https://yourdomain.com/preview.jpg" />
+    <meta
+      property="og:description"
+      content="Join us in celebrating Sophia Khate’s debut."
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sophia Khate — Her Debut</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    </script>
+  </head>
+  <body>
+    <!-- =================== ENVELOPE SCREEN (1ST PAGE) =================== -->
+    <div id="envelope-screen">
+      <!-- Background particles -->
+      <div class="env-bg-pattern"></div>
+      <div class="env-particles" id="env-particles"></div>
+
+      <!-- Corner ornaments -->
+      <div class="env-corner tl"></div>
+      <div class="env-corner tr"></div>
+      <div class="env-corner bl"></div>
+      <div class="env-corner br"></div>
+
+      <!-- The Envelope -->
+      <div class="envelope-wrap">
+        <!-- Floating decorative text above -->
+        <p class="env-above-text">You are cordially invited</p>
+
+        <!-- Envelope body -->
+        <div class="envelope">
+          <!-- Back flap (behind) -->
+          <div class="env-back"></div>
+
+          <!-- Left & right triangles of envelope front -->
+          <div class="env-tri env-tri-left"></div>
+          <div class="env-tri env-tri-right"></div>
+          <div class="env-tri env-tri-bottom"></div>
+
+          <!-- Invite card inside (peeks out when flap opens) -->
+          <div class="env-invite-card">
+            <div class="env-card-inner">
+              <div class="env-card-ornament">✦</div>
+              <p class="env-card-label">An Unforgettable Evening</p>
+              <h2 class="env-card-name">Sophia Khate<br />R. Arganda</h2>
+              <div class="env-card-divider"><span></span></div>
+              <p class="env-card-date">May 23, 2026</p>
+              <p class="env-card-venue">Casa Buena · Private resort</p>
+              <div class="env-card-ornament">✦</div>
+            </div>
+          </div>
+
+          <!-- Top flap (flips open) -->
+          <div class="env-flap">
+            <!-- Diamond pattern on flap -->
+            <div class="env-flap-inner">
+              <div class="env-flap-diamond"></div>
+            </div>
+          </div>
+
+          <!-- Wax seal button -->
+          <button
+            id="envelope-seal-btn"
+            onclick="openEnvelope()"
+            title="Open your invitation"
+          >
+            <div class="seal-ring"></div>
+            <div class="seal-inner">
+              <span class="seal-monogram">SK</span>
+              <span class="seal-text">Open</span>
+            </div>
+            <div class="seal-glow"></div>
+          </button>
+        </div>
+        <!-- /envelope -->
+
+        <!-- Below text -->
+        <p class="env-below-text">Click the seal to open your invitation</p>
+      </div>
+      <!-- /envelope-wrap -->
+    </div>
+    <!-- /envelope-screen -->
+
+    <!-- =================== INTRO ANIMATION (2ND) =================== -->
+    <div id="intro">
+      <div class="intro-pattern"></div>
+      <div class="light-streak"></div>
+      <div class="light-streak"></div>
+      <div class="light-streak"></div>
+      <div class="light-streak"></div>
+
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+
+      <!-- Passport stamps -->
+      <div class="stamp" id="stamp1">
+        <span>✈</span>
+        <div class="stamp-inner">DEBUT</div>
+        <span>2026</span>
+      </div>
+
+      <!-- SVG flight path -->
+      <svg
+        id="flight-canvas"
+        viewBox="0 0 1440 810"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="trailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(201,168,76,0)" />
+            <stop offset="100%" stop-color="rgba(201,168,76,0.7)" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <path
+          id="flight-path"
+          d="M -100 600 Q 360 400 720 300 Q 1080 200 1540 120"
+          fill="none"
+          stroke="rgba(201,168,76,0.25)"
+          stroke-width="1.5"
+          stroke-dasharray="8 10"
+          stroke-dashoffset="0"
+        >
+          <animate
+            attributeName="stroke-dashoffset"
+            from="1000"
+            to="0"
+            dur="4s"
+            begin="indefinite"
+            fill="freeze"
+            id="path-anim"
+          />
+        </path>
+        <path
+          id="trail"
+          d="M -100 600 Q 360 400 720 300 Q 1080 200 1540 120"
+          fill="none"
+          stroke="rgba(201,168,76,0.12)"
+          stroke-width="6"
+          filter="url(#glow)"
+        />
+        <g id="airplane-group" filter="url(#glow)" opacity="0">
+          <g id="airplane" transform="translate(0,0) rotate(-18)">
+            <ellipse cx="0" cy="0" rx="18" ry="5" fill="#C9A84C" />
+            <polygon points="0,-4 -12,8 12,8" fill="#E8C86A" opacity="0.9" />
+            <polygon points="0,2 -8,-10 8,-10" fill="#E8C86A" opacity="0.7" />
+            <polygon points="14,0 22,-6 22,6" fill="#C9A84C" opacity="0.8" />
+            <circle cx="-16" cy="0" r="4" fill="rgba(255,240,180,0.8)" />
+          </g>
+        </g>
+      </svg>
+
+      <div id="sparkle-container"></div>
+
+      <div class="intro-text">
+        <h1>Sophia Khate R. Arganda</h1>
+        <p>You are invited to celebrate her 18th birthday</p>
+        <p>Debut Celebration</p>
+      </div>
+    </div>
+
+    <!-- =================== MAIN PAGE =================== -->
+    <div id="main-page">
+      <audio id="bg-music" loop>
+        <source src="music/bts.mp3" type="audio/mpeg" />
+      </audio>
+
+      <button id="music-btn" title="Toggle Music" onclick="toggleMusic()">
+        ♪
+      </button>
+
+      <!-- ===== HERO ===== -->
+      <section class="hero">
+        <div class="hero-photo-wrap fade-in">
+          <div class="hero-photo-ring">
+            <img src="pictures/khate.jpg" alt="" class="hero-photo" />
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+            <div class="orbit-dot"></div>
+          </div>
+
+          <div class="hero-content">
+            <p class="debutant-age fade-in" style="transition-delay: 0.2s">
+              Celebrating Eighteen Years
+            </p>
+            <h1 class="debutant-name fade-in" style="transition-delay: 0.35s">
+              Sophia Khate Roque.<br />Arganda
+            </h1>
+            <div class="gold-divider fade-in" style="transition-delay: 0.5s">
+              <span></span>
+            </div>
+            <p class="debutant-tagline fade-in" style="transition-delay: 0.65s">
+              An Unforgettable Evening
+            </p>
+            <p class="hero-date fade-in" style="transition-delay: 0.8s">
+              May 23, 2026 · Casa Buena, Private resort
+            </p>
+          </div>
+
+          <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== DETAILS ===== -->
+      <section class="details-section">
+        <div class="section-inner">
+          <p class="section-label fade-in">The Invitation</p>
+          <h2 class="section-title fade-in">Event Details</h2>
+          <div class="gold-divider fade-in"><span></span></div>
+          <div class="details-card fade-in">
+            <div class="detail-grid">
+              <div class="detail-item">
+                <div class="detail-icon">✦</div>
+                <p class="detail-label">Debutant</p>
+                <p class="detail-value">
+                  <strong>Sophia Khate R. Arganda</strong>
+                </p>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">📅</div>
+                <p class="detail-label">Date</p>
+                <p class="detail-value">
+                  <strong>Saturday</strong>May 23, 2026
+                </p>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">🕖</div>
+                <p class="detail-label">Time</p>
+                <p class="detail-value">
+                  <strong>5:00 PM</strong>Doors open at 4:30 PM
+                </p>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">🏛</div>
+                <p class="detail-label">Venue</p>
+                <p class="detail-value">
+                  <strong>Casa Buena</strong>Private Resort
+                </p>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">🤵🏻</div>
+                <p class="detail-label">Attire</p>
+                <p class="detail-value">
+                  <strong>Formal</strong>
+                  <span class="color-motif">
+                    <span class="color-dot burgundy"></span>
+                    <span class="color-dot gold"></span>
+                    <span class="color-dot black"></span>
+                    <span class="color-dot red"></span>
+                  </span>
+                </p>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">🌹</div>
+                <p class="detail-label">Host</p>
+                <p class="detail-value">
+                  <strong>Francis Argana</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ABOUT ===== -->
+      <section class="about-section">
+        <div class="section-inner">
+          <p class="section-label fade-in">A Letter to Our Guests</p>
+          <h2 class="section-title fade-in">About the Debutant</h2>
+          <div class="gold-divider fade-in"><span></span></div>
+          <div class="about-grid">
+            <div class="about-photo-wrap fade-in">
+              <div class="about-photo-frame">
+                <div class="about-photo-placeholder">
+                  <img
+                    src="pictures/khate1.jpg"
+                    alt="Sophia Portrait"
+                    class="about-photo"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="about-text fade-in" style="transition-delay: 0.2s">
+              <p class="about-quote">
+                "She blooms with grace, shines with purpose, and walks forward
+                with a heart full of love."
+              </p>
+              <p class="about-body">
+                Sophia Khate R. Arganda celebrates her eighteenth birthday this
+                May — and it would be our honor to have you join us in
+                celebrating this remarkable milestone. Graceful, kind, and full
+                of wonder, Sophia has grown into a young woman whose warmth
+                illuminates every space she enters.
+                <br /><br />
+                This evening is a tribute not only to her birthday, but to every
+                cherished moment and memory that has brought her to this special
+                night. We warmly invite you to witness the beginning of her next
+                wonderful chapter.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== GALLERY ===== -->
+      <section class="gallery-section">
+        <div class="section-inner">
+          <h2 class="section-title fade-in">Photo Gallery</h2>
+          <div class="gold-divider fade-in"><span></span></div>
+          <div class="gallery-grid fade-in">
+            <div class="gallery-item" style="--angle: 135deg">
+              <div class="gallery-placeholder">🌸</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate2.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 160deg">
+              <div class="gallery-placeholder">✨</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate3.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 120deg">
+              <div class="gallery-placeholder">🌹</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate4.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 145deg">
+              <div class="gallery-placeholder">💫</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate5.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 110deg">
+              <div class="gallery-placeholder">🌟</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate6.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 155deg">
+              <div class="gallery-placeholder">🎀</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate7.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 155deg">
+              <div class="gallery-placeholder">🎈</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate8.jpg" alt="" />
+              </div>
+            </div>
+            <div class="gallery-item" style="--angle: 155deg">
+              <div class="gallery-placeholder">🎁</div>
+              <div class="gallery-overlay">
+                <img src="pictures/khate9.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROGRAM ===== -->
+      <!-- ===== PROGRAM ===== -->
+      <section class="program-section">
+        <div class="section-inner">
+          <p class="section-label fade-in">The Evening's Journey</p>
+          <h2 class="section-title fade-in">Program of Events</h2>
+          <div class="gold-divider fade-in"><span></span></div>
+          <div class="timeline fade-in">
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">
+                  Guess Arrival, Photobooth, Souvenir &amp; Snacks
+                </p>
+                <p class="timeline-desc">
+                  Welcome guests with treats, photo opportunities, and keepsakes
+                  as everyone arrives and settles in
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Entrance of the Family</p>
+                <p class="timeline-desc">
+                  A warm and graceful procession as the Arganda family makes
+                  their ceremonial entrance into the hall
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">Sabrina Kriell's Program</p>
+                <p class="timeline-desc">
+                  A special segment hosted and presented by Sabrina Kriell to
+                  open the evening's festivities
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Grand Entrance of the Debutant</p>
+                <p class="timeline-desc">
+                  Sophia Khate makes her breathtaking debut entrance, escorted
+                  with elegance into the celebration
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">Cotillion de Honor</p>
+                <p class="timeline-desc">
+                  A graceful and choreographed performance by her court,
+                  dedicated to the debutant
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Announcement of Game Winner</p>
+                <p class="timeline-desc">
+                  Recognition and prizes for the winner of the first part of the
+                  evening's games
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">Debut Highlights</p>
+                <p class="timeline-desc">
+                  A touching video presentation showcasing Sophia's most
+                  cherished memories and milestones
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Games — First Part</p>
+                <p class="timeline-desc">
+                  Fun and lively games to energize the crowd and get the whole
+                  venue celebrating together
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">Photo Session</p>
+                <p class="timeline-desc">
+                  A dedicated time for the debutant and guests to capture
+                  beautiful memories together
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Prayer</p>
+                <p class="timeline-desc">
+                  A moment of gratitude and blessing led by the family's beloved
+                  pastor before the feast
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">Grand Dinner</p>
+                <p class="timeline-desc">
+                  Guests are invited to enjoy a beautifully prepared feast in an
+                  elegant and celebratory atmosphere
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Program Continuation</p>
+                <p class="timeline-desc">
+                  The program resumes following dinner, with more special
+                  segments and surprises
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">Games — Second Part</p>
+                <p class="timeline-desc">
+                  Another round of exciting games to keep the energy high and
+                  the laughter going all night
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Cake Cutting</p>
+                <p class="timeline-desc">
+                  The ceremonial cutting of the debut cake, followed by a
+                  heartfelt toast to Sophia Khate
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <p class="timeline-event">
+                  Message of the Parents and Debutant
+                </p>
+                <p class="timeline-desc">
+                  Heartfelt words of love and gratitude shared by the family and
+                  Sophia herself to all in attendance
+                </p>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right"></div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left"></div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-right">
+                <p class="timeline-event">Party Proper</p>
+                <p class="timeline-desc">
+                  The floor opens for dancing, music, and an unforgettable night
+                  of joy and celebration
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LOCATION ===== -->
+      <section class="location-section">
+        <div class="section-inner">
+          <p class="section-label fade-in">Find Us Here</p>
+          <h2 class="section-title fade-in">Venue & Location</h2>
+          <div class="gold-divider fade-in"><span></span></div>
+          <div class="venue-card fade-in">
+            <p class="venue-name">Private Resort</p>
+            <p class="venue-address">
+              Casa Buena Private Resort <br />
+              Block 8, Lots 3 & 4, Indigo Bay <br />
+              Bagong Kalsada, Calamba, Laguna
+            </p>
+            <a
+              class="map-btn"
+              href="https://maps.google.com/?q=14.174926,121.19374409999999"
+              target="_blank"
+              >Get Directions</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <footer>
+        <div class="footer-ornament">✦ ✦ ✦</div>
+        <p class="footer-name">Sophia Khate R. Arganda</p>
+        <p
+          style="
+            font-family: &quot;Cormorant Garamond&quot;, serif;
+            font-size: 1rem;
+            opacity: 0.6;
+            margin: 8px 0;
+            font-style: italic;
+          "
+        >
+          Eighteen & Blooming
+        </p>
+        <div class="footer-ornament" style="font-size: 1rem; margin: 12px 0">
+          — ✦ —
+        </div>
+        <p>May 23, 2026 · Casa Buena · Private Resort</p>
+        <p style="margin-top: 8px">Made with love by the Arganda Family</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
